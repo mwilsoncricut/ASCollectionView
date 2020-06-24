@@ -92,6 +92,12 @@ public extension ASPriorityCache
 		tail?.value
 	}
 
+    func clear() {
+        nodes.removeAll()
+        head = nil
+        tail = nil
+    }
+
 	subscript(_ key: Key) -> Value?
 	{
 		get { nodes[key]?.value }

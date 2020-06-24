@@ -380,7 +380,12 @@ public struct ASCollectionView<SectionID: Hashable>: UIViewControllerRepresentab
 			populateDataSource(animated: false)
 		}
 
-		func onMoveFromParent() {}
+		func onMoveFromParent() {
+            // Clear cache
+            autoCachingHostingControllers.clear()
+            explicitlyCachedHostingControllers.removeAll()
+            autoCachingSupplementaryHostControllers.clear()
+        }
 
 		var invalidateLayoutOnNextUpdate: Bool = false
 		func invalidateLayout(animated: Bool)
