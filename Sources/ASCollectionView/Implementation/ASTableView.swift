@@ -61,6 +61,7 @@ public struct ASTableView<SectionID: Hashable>: UIViewControllerRepresentable, C
 
 	public func updateUIViewController(_ tableViewController: AS_TableViewController, context: Context)
 	{
+        guard tableViewController.view.window != nil else { return }
 		context.coordinator.parent = self
 		context.coordinator.updateTableViewSettings(tableViewController.tableView)
 		context.coordinator.updateContent(tableViewController.tableView, transaction: context.transaction)
