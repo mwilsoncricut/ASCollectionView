@@ -81,7 +81,12 @@ public struct ASCollectionView<SectionID: Hashable>: UIViewControllerRepresentab
 
 	public func updateUIViewController(_ collectionViewController: AS_CollectionViewController, context: Context)
 	{
-        guard collectionViewController.view.window != nil else { return }
+		guard collectionViewController.view.window != nil else
+		{
+		    context.coordinator.parent = self
+		    context.coordinator.configureRefreshControl(for: collectionViewController.collectionView)
+		    return
+		}
 		context.coordinator.parent = self
 		context.coordinator.updateCollectionViewSettings(collectionViewController.collectionView)
 		context.coordinator.updateContent(collectionViewController.collectionView, transaction: context.transaction)
